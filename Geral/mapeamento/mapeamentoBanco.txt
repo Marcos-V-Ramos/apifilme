@@ -1,0 +1,24 @@
+Mapeamento do Banco de Dados:
+Antes de fazer o mapeamento, intalar pelo terminal:
+
+dotnet tool install --global dotnet-ef
+
+
+
+Mapeamento:
+
+
+dotnet ef dbcontext scaffold "server=localhost; user id=root; password=senhaDoBanco; database=dataBaseDoBanco" 
+Pomelo.EntityFrameworkCore.MySql -o Models --data -annotations --force
+
+Será feito um mapeamento automático do contexto usando o EntityFramework;
+
+A parte entre aspas é chamada de "connection string", que é o texto que contém as informações para acessar o Banco de Dados;
+
+Será usada a dll do Pomelo, "-o Models" é a pasta onde será feito o mapeamento;
+
+A string "--data -annotations" significa que usará notação por atributo;
+
+Por último, caso exista um mapeamento, o "--force" irá apagá-lo.
+
+dotnet ef dbcontext scaffold "server=localhost; user id=root; password=122jk3810; database=db_filme" Pomelo.EntityFrameworkCore.MySql -o Models --data-annotations --force
