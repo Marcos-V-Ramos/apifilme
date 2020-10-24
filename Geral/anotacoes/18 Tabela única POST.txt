@@ -1,0 +1,24 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
+using System.Microsoft.AspNetCore.Mvc;
+
+namespace apiFilme.Controllers
+{
+	[ApiController]         Api Controller
+	[Route("[controller]")]         Irá pegar o que vier antes de "controller"
+
+	public class AtorController : ControlleBase     Herda do ControllerBase
+	{
+		public Models.TbAtor Ator(Models.TbAtor ator)   Recebe um ator que fica dentro de Models 
+		{
+			Models.db_filmeContext ctx = new Models.db_filmeContext();
+			ctx.Add(ator);
+			ctx.SaveChanges();
+
+			return ator;
+		}
+	}
+}
