@@ -1,0 +1,49 @@
+Calculadora #13
+
+Controller:
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+
+namespace apiFilme.Controllers
+{
+    [ApiController]
+    [Route("[controller]")]
+    
+    public class CalculadoraController : ControllerBase
+    {   // Será usado parâmetros de URL
+
+        [HttpPost]
+        public CalcResponse Somar2(CalcRequest modelo)
+        {
+            int r = modelo.n1 - modelo.n2;
+            CalcResponse resp = new CalcResponse();
+            resp.Response = r;
+            return resp;
+        }
+    }
+}
+
+Request:
+
+namespace apiFilme
+{
+    public class CalcRequest
+    {
+        public int n1 { get; set; }
+        public int n2 { get; set; }
+    }
+}
+
+Response:
+
+namespace apiFilme
+{
+    public class CalcResponse
+    {
+        public int Response { get; set; }
+    }
+}

@@ -20,6 +20,7 @@ namespace apiFilme.Models
         public string NmAtor { get; set; }
         [Column("dt_nascimento", TypeName = "date")]
         public DateTime? DtNascimento { get; set; }
+        
         [Column("vl_altura", TypeName = "decimal(10,2)")]
         public decimal? VlAltura { get; set; }
 

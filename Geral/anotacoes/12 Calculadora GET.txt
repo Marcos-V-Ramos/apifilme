@@ -1,0 +1,49 @@
+CALCULADORA GET #12
+-------
+
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
+using Microsoft.AspNetCore.Mvc;
+
+
+
+
+namespace apiFilme.Controllers
+{
+    [ApiController]
+    [Route("[controller]")]
+    public class CalculadoraController : ControllerBase
+    {   // Será usado parâmetros de URL
+        [HttpGet] // Verbo GET
+        public int Somar(int n1, int n2)
+        {
+            int r = n1 + n2;
+            return r;
+        }
+
+        [HttpGet("multiplicar")] // Usar sub rota "multiplicar", pois h� dois verbos iguais
+        public int Multiplicar(int n1, int n2)
+        {
+            int r = n1 * n2;
+            return r;
+        }
+
+        [HttpGet("dividir")]
+        public string Dividir(int n1, int n2)
+        {
+            int r = n1 / n2;
+            return "O resultado é " + r;
+        }
+
+        [HttpGet("subtrair")]
+        public string Subtrair(int n1, int n2)
+        {
+            int r = n1 - n2;
+            return "O resultado é " + r;
+        }
+    }
+}
