@@ -1,0 +1,23 @@
+Função GET sem filtro
+
+[HttpGet] 
+public List<Models.TbFilme> Consultar()
+{
+    Models.db_filmeContext ctx = new Models.db_filmeContext(); Contexto instânciado
+
+    List<Models.db_filmeContext> filmes = ctx.TbFilme.ToList(); 
+
+    return filmes; 
+}
+
+Função GET com filtro
+
+[HttpGet("genero")]
+public List<Models.TbFilme> ConsultarPorGenero(genero)
+{
+    Models.db_filmeContext ctx = new Models.db_filmeContext(); Contexto instânciado
+
+    List<Models.db_filmeContext> filmesFiltrados = ctx.TbFilme.Where(y => y.DsGenero == genero).ToList();
+
+    return filmes;
+}
