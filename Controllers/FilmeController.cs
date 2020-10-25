@@ -70,5 +70,28 @@ namespace apiFilme.Controllers
             ctx.SaveChanges();
         }
 
+        // - VERBO DELETE -
+
+        [HttpDelete]
+        public void RemoverFilme(Models.TbFilme filme)
+        {
+            Models.db_filmeContext ctx = new Models.db_filmeContext();
+
+            Models.TbFilme atual = ctx.TbFilme.First(x => x.IdFilme == filme.IdFilme);
+            ctx.TbFilme.Remove(atual);
+            ctx.SaveChanges();
+        }
+        
+        [HttpDelete("genero")]
+        public void RemoverPorGenero(Models.TbFilme filme)
+        {
+            Models.db_filmeContext ctx = new Models.db_filmeContext();
+
+            List<Models.TbFilme> filmes = ctx.TbFilme.Where(x => x.DsGenero == filme.DsGenero)
+                                                                .ToList();
+
+            ctx.TbFilme.RemoveRange(filmes);
+            ctx.SaveChanges();
+        }
     }
 }

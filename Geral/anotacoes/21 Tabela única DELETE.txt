@@ -1,0 +1,22 @@
+[HttpDelete]
+public void DeletarFilme(Models.TbFilme filme)
+{
+    Models.db_filmeContext ctx = new Models.db_filmeContext();
+
+    Models.TbFilme atual = ctx.First( x => x.IdFilme == filme.IdFilme );
+
+    ctx.TbFilme.Delete(atual);
+    ctx.SaveChanges();
+}
+
+
+[HttpDelete("genero")]
+public void DeletarPorGenero(Models.TbFilme filme)
+{
+    Models.db_filmeContext ctx = new Models.db_filmeContext();
+
+    List<Models.TbFilme> filmes = ctx.TbFilme.Where( x => x.IdFilme == filme.IdFilme)
+                                .ToList();
+    ctx.DeleteRange(filmes);
+    ctx.SaveChanges();
+}
