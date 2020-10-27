@@ -1,0 +1,48 @@
+
+
+
+
+
+[HttpGet]
+public List<Models.TbDiretor> Listar()
+{
+    Models.db_filmeContext ctx = new Models.db_filmeContext();
+
+    List<Models.TbDiretor> diretores = ctx.TbDiretor.ToList();
+    return diretores;
+}
+
+
+Com a funçõa acima, utilizando o Postman, 'idFilmeNavigation' Retornará um campo IdFilmeNavigation nulo no JSON, 
+pois não foi feito o relacionamento com a chave estrangeira.
+
+Para incluir a navegação do filme, adicione o MicrosoftEntityFrameWork:
+
+using Microsoft.EntityFrameworkCore;
+
+Assim, poderemos incluir o campo de navegação:
+
+public List<Models.TbDiretor> Listar()
+{
+    Models.db_filmeContext ctx = new Models.db_filmeContext();
+
+    List<Models.TbDiretor> diretores = ctx.TbDiretor.Include(x => x.IdFilmeNavigation).ToList();
+
+    return diretores; 
+} 
+"Será feito um include na TbDiretor, para incluir as informações de navegação."
+
+Resultará um erro de Impossível ciclo de mapeamento de estrutura. Acontece quando um JSON tem um submodelo
+que chama um submodelo que referencia o mesmo submodelo, ficando em uma relação infinita. É resolvido com três passos:
+
+1. Instalar o nuget:
+microsoft.aspnetcore.mvc.newtonsoft
+
+2. Ir no arquivo Startup, procurar a função ConfigureServices e acrescentar AddNewtonsoftJson:
+
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+}
+
+3. Acrescentar o 'using Newtonsoft.Json;'

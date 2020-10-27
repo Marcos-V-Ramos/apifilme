@@ -1,0 +1,6 @@
+O Debug serve acompanhar linha-a-linha o código durante a execução.
+
+Marcar a linha de código apatir de um circulo vermelho.
+
+Ir em 'RUN' (Ctrl + Shift + D) e criar um arquivo de debug para a plataforma desejada.
+

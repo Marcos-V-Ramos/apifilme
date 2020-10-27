@@ -43,6 +43,8 @@ namespace apiFilme.Controllers
             return filmeFiltrado;
         }
 
+        // - VERBO PUT -
+
         [HttpPut]
         public void Alterar(Models.TbFilme filme)
         {
